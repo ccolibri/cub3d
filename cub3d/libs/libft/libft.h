@@ -12,6 +12,9 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# define ADD 1
+# define REMOVE 0
 # define BUFFER_SIZE 1024
 
 # include <stdlib.h>
@@ -106,5 +109,13 @@ int					ft_lstsize(t_list *lst);
 				*******GNL*******
 */
 int		get_next_line(int fd, char **line);
+
+/*
+				*****MEMORY_MANAGE*****
+*/
+void    free_mm(void *ptr);
+void    *malloc_mm(size_t size);
+void    *calloc_mm(size_t nmem, size_t size);
+void	mem_manager(void *ptr, int action);
 
 #endif

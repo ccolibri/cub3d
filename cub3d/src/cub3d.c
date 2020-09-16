@@ -41,8 +41,8 @@ void    plr_spot(t_all *all)
 
 int     key_p(int keycode, t_all *all)
 {
-    /*if (keycode == ESC)
-        exit;*/
+    if (keycode == ESC)
+        close_me(all);
     if (keycode == LEFT)
         all->plr.turn_dir = -1;
     else if (keycode == RIGHT)
@@ -98,7 +98,7 @@ int     main(int argc, char **argv)
 
     bmp = validate_args(argc, argv, &all);
     preparing_cub(&all, argv[1], bmp);
-    mlx_hook(all.frame.win, 17, 0, ft_errors, &all);
+    mlx_hook(all.frame.win, 17, 0, close_me, &all);
     mlx_hook(all.frame.win, 2, 0, key_p, &all);
     mlx_hook(all.frame.win, 3, 0, key_r, &all);
     mlx_loop(all.frame.mlx);

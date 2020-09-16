@@ -3,7 +3,7 @@
 static void init_player(char wall, int x, int y, t_all *all)
 {
     if (all->plr.angle != -1 || all->plr.x != 0 || all->plr.y != 0)
-        ft_errors(-18);
+        exit_cub("Error : Multiple player", all);
     all->plr.x = x;
     all->plr.y = y;
     if (wall == 'N')
@@ -25,11 +25,11 @@ static void ft_align(t_all *all, int max)
     while (all->map.tab[i] != NULL)
     {
         tmp = all->map.tab[i];
-        all->map.tab[i] = malloc(sizeof(char *) * max + 1);
+        all->map.tab[i] = malloc_mm(sizeof(char *) * max + 1);
         ft_memset(all->map.tab[i], ' ', max);
         all->map.tab[i][max] = '\0';
         ft_memcpy(all->map.tab[i], tmp, ft_strlen(tmp));
-        free(tmp);
+        free_mm(tmp);
         i++;
     }
     all->map.x = max;
@@ -44,9 +44,9 @@ static void draw_sprite(t_all *all)
 
     y = 0;
     i = 0;
-    all->sprite = malloc(sizeof(t_sprite) * (all->map.sprites));
+    all->sprite = malloc_mm(sizeof(t_sprite) * (all->map.sprites));
     if (all->sprite == NULL)
-        ft_errors(-11);
+        exit_cub("Error : Malloc for sprite failed", all);
     while (all->map.tab[y])
     {
         x = 0;
@@ -76,7 +76,7 @@ static void parse_line(char *str, int y, t_all *all)
         else if (str[x] == '2')
             all->map.sprites++;
         else if (str[x] != '0' && str[x] != '1' && str[x] != ' ')
-            ft_errors(-12);
+            exit_cub("Error : Invalid symbols in the map", all);
         x++;
     }
 }
@@ -90,8 +90,8 @@ void    parse_map(t_all *all, t_list *params)
     max = 0;
     while (params && ft_atoi(params->content) == 0)
         params = params->next;
-    if (!(all->map.tab = malloc(sizeof(char *) * ft_lstsize(params) + 1)))
-        ft_errors(-11);
+    if (!(all->map.tab = malloc_mm(sizeof(char *) * ft_lstsize(params) + 1)))
+        exit_cub("Error : Malloc for map failed", all);
     while (params)
     {
         parse_line(params->content, i, all);

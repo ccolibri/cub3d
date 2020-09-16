@@ -1,6 +1,6 @@
 #ifndef CUB3D_H
 # define CUB3D_H
-# include "../libs/minilibx_mms_20200219/mlx.h"
+# include "../libs/mlx/mlx.h"
 # include "../libs/libft/libft.h"
 # include <math.h>
 # include <fcntl.h>
@@ -167,8 +167,8 @@ typedef struct		s_all
 	t_frame			frame;
 }					t_all;
 
-int		ft_exit(t_all *all, int win);
-int		ft_errors(int err);
+int		close_me(t_all *all);
+void	exit_cub(char *error,t_all *all);
 void    validate_map(t_all *all, char **map);
 void    validate_params(t_all *all);
 int     validate_args(int argc, char **argv, t_all *all);

@@ -10,8 +10,8 @@ INCLUDES = -I$(INC_DIR)
 CC = gcc
 FLAGS = -Wall -Wextra -Werror -g
 
-MLX_DIR = $(LIB_DIR)/minilibx_mms_20200219
-MLX_FLAGS = -L $(MLX_DIR)  -lmlx -framework OpenGL -framework AppKit
+MLX_DIR = $(LIB_DIR)/mlx
+MLX_FLAGS = -L $(MLX_DIR) -Imlx -lmlx -framework OpenGL -framework AppKit
 LIBFT_DIR = $(LIB_DIR)/libft
 LIBFT_FLAGS = -L $(LIBFT_DIR) -lft
 
@@ -38,7 +38,7 @@ all: $(OBJ_DIR) $(NAME)
 $(NAME): $(OBJ_FILES)
 	@make -C $(MLX_DIR)
 	@make -C $(LIBFT_DIR)
-	@$(CC) -o $(NAME) $(INCLUDES) $(OBJ_FILES) $(LIBFT_FLAGS) $(MLX_FLAGS)
+	@$(CC) -o $(NAME) $(INCLUDES) $(OBJ_FILES) $(LIBFT_FLAGS) $(MLX_FLAGS) -g
 
 $(OBJ_FILES): $(OBJ_DIR)%.o : $(SRC_DIR)%.c
 	@$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
@@ -59,4 +59,4 @@ re: fclean all
 bonus: all
 
 run: re 
-	./cub3D map.cub
+	./cub3D maps/map.cub

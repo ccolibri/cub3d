@@ -50,7 +50,9 @@ SRC = ft_atoi.c\
 	ft_strcpy.c\
 	ft_putstr.c\
 	ft_putendl.c\
-	ft_putnbr_fd.c
+	ft_putnbr_fd.c\
+	manager.c\
+	mem_manage.c
 SRCBONUS = ft_lstnew.c\
 		ft_lstadd_back.c\
 		ft_lstadd_front.c\

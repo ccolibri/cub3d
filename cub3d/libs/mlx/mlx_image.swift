@@ -38,7 +38,7 @@ public class MlxImg
 	  }
     	 textureDesc.pixelFormat = MTLPixelFormat.bgra8Unorm
     	 let texture_buff = device.makeBuffer(length: texture_sizeline * height)!
-    	 texture = texture_buff.makeTexture(descriptor:textureDesc, offset:0, bytesPerRow:texture_sizeline)!
+    	 texture = texture_buff.makeTexture(descriptor:textureDesc, offset:0, bytesPerRow:texture_sizeline)!	
 
 	let tmpptr = texture_buff.contents()
 	texture_data = tmpptr.assumingMemoryBound(to:UInt32.self)

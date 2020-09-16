@@ -18,7 +18,7 @@ func _mlx_bridge<T : AnyObject>(ptr : UnsafeRawPointer) -> T {
 public class MlxMain {
 
       public var winList = [MlxWin]()
-      public var imgList = [MlxImg]() 
+      public var imgList = [MlxImg]()
       var myMlxApp:NSApplication?
       public var device:MTLDevice!
       var loopHook:UnsafeMutableRawPointer?
@@ -39,7 +39,7 @@ public class MlxMain {
 		NSApp.setActivationPolicy(NSApplication.ActivationPolicy.regular)
 	}
 
-	device = MTLCreateSystemDefaultDevice()
+	device = MTLCreateSystemDefaultDevice()!
 	loopParam = UnsafeMutableRawPointer(&inLoop)  /// dummy addr init
 
 	/// Add observer anyway to flush pixels every loop. If loop_hook exists, call it.

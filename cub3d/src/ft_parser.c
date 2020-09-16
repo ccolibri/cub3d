@@ -42,14 +42,15 @@ static void		make_color(char *str, t_all *all, char color)
 	str++;
 	validate_clr(str, color, all);
 	if (!(clr = ft_split(str, ',')))
-		ft_errors(-11);
+		exit_cub("Error : Malloc failed", all);
 	i = 0;
 	while (clr && clr[i] != NULL)
 	{
 		if ((rgb[i] = ft_atoi(clr[i])) > 255 || clr[i] < 0 || i > 2)
-			ft_errors(-6);
+			exit_cub("Error : Invalid color configutation", all);
 		i++;
 	}
+	free_mm(clr);
 	if (color == 'C')
 		all->map.c_clr = create_trgb(0, rgb[0], rgb[1], rgb[2]);
 	else if (color == 'F')
@@ -58,12 +59,12 @@ static void		make_color(char *str, t_all *all, char color)
 
 static void		make_res(char *str, t_all *all)
 {
-	int 	width = 0;
-	int		height = 0;
+	int 	width;
+	int		height;
 
 	mlx_get_screen_size(all->frame.mlx, &width, &height);
 	if (all->frame.w != -1 || all->frame.h != -1)
-		ft_errors(-3);
+		exit_cub("Error : Multiple resolution", all);
 	str = ft_strchr(str, 'R');
 	str++;
 	all->frame.w = ft_atoi(str);
@@ -73,7 +74,7 @@ static void		make_res(char *str, t_all *all)
 		str++;
 	all->frame.h = ft_atoi(str);
 	if (all->frame.w <= 0 || all->frame.h <= 0)
-		ft_errors(-4);
+		exit_cub("Error : Invalid resolution", all);
 	all->frame.w = all->frame.w > width ? width : all->frame.w;
 	all->frame.h = all->frame.h > height ? height : all->frame.h;
 }
@@ -81,14 +82,13 @@ static void		make_res(char *str, t_all *all)
 static void		parse_params(t_list	*list, t_all *all)
 {
 	size_t		len;
-	char *op;
 
 	while (list)
 	{
 		len = ft_strlen(list->content);
 		if (ft_strnstr(list->content, "R ", len))
 			make_res(list->content, all);
-		else if ((op = ft_strnstr(list->content, "NO ", len)))
+		else if ((ft_strnstr(list->content, "NO ", len)))
 			make_texture(list->content, all, 'N');
 		else if (ft_strnstr(list->content, "SO ", len))
 			make_texture(list->content, all, 'S');
@@ -118,18 +118,18 @@ void	parser(char *map, t_all *all)
 
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
-		ft_errors(-1);
+		exit_cub("Error : Invalid config file", all);
 	params = NULL;
 	while ((gnl = get_next_line(fd, &line)) > 0)
 	{
 		if (!(ptr = ft_lstnew(line)))
-			ft_errors(-11);
+			exit_cub("Error : Malloc failed", all);
 		ft_lstadd_back(&params, ptr);
 	}
 	if (gnl == -1)
-		ft_errors(-2);
+		exit_cub("Error : GNL failed", all);
 	if (!(ptr = ft_lstnew(line)))
-		ft_errors(-11);
+		exit_cub("Error : Malloc failed", all);
 	ft_lstadd_back(&params, ptr);
 	close(fd);
 	parse_params(params, all);

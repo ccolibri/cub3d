@@ -40,11 +40,11 @@ void    ft_bmp(t_all *all)
     bf = file_header(all);
     bi = info_header(all);
     if (!write(fd, &bf, sizeof(bf)))
-        write(2, "file error", 10);
+        exit_cub("Error : FH error", all);
     if (!write(fd, &bi, sizeof(bi)))
-        write( 2, "info error", 10);
+        exit_cub("Error : IH error", all);
     if (!write(fd, all->img.addr, all->frame.w * all->frame.h * 4))
-        write(2, "bmp data error", 14);
+        exit_cub("Error : BMP data error", all);
     close(fd);
-    write(2, "Screenshot has been saved", 25);
+    exit_cub("Screenshot has been saved", all);
 }

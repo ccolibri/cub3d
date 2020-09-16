@@ -28,18 +28,13 @@ static void init_all_structs(t_all *all)
 
 static void create_img(t_img *img, t_frame *screen, t_all *all)
 {
+    
     img->img = mlx_new_image(screen->mlx, screen->w, screen->h);
     if (img->img == NULL)
-    {
-        write(2, "mlx_new_image failed", 20);
-        free(all);
-    }
+        exit_cub("Error : mlx function failed", all);
     img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->len, &img->endian);
     if (img->addr == NULL)
-    {
-        write(2, "mlx_get_data_addr failed", 24);
-        free(all);
-    }
+        exit_cub("Error : mlx function failed", all);
 }
 
 void    preparing_cub(t_all *all, char *path, int bmp)
@@ -47,16 +42,16 @@ void    preparing_cub(t_all *all, char *path, int bmp)
     init_all_structs(all);
     all->frame.mlx = mlx_init();
     if (all->frame.mlx == NULL)
-        ft_errors(-21);
+        exit_cub("Error : mlx init failed", all);
     parser(path, all);
     if (!(all->ray = malloc(sizeof(t_ray) * all->frame.w)))
-        ft_errors(-11);
+        exit_cub("Error : malloc for rays failed", all);
     create_img(&all->img, &all->frame, all);
     rendering(all);
     if (bmp == TRUE)
         ft_bmp(all);
     all->frame.win = mlx_new_window(all->frame.mlx, all->frame.w, all->frame.h, "cub3D");
     if (all->frame.win == NULL)
-        ft_errors(-22);
+        exit_cub("Error: mlx new win failed", all);
     mlx_put_image_to_window(all->frame.mlx, all->frame.win, all->img.img, 0, 0);
 }
