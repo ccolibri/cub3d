@@ -13,22 +13,8 @@
 #include "libft.h"
 
 char		*ft_strchr(const char *str, int n)
-{
-	int		i;
-	char	*a;
-
-	i = 0;
-	while (str[i] != '\0' && str[i] != n)
-		i++;
-	if (str[i] == n)
-	{
-		a = (char *)&str[i];
-		return (a);
-	}
-	if (str[i] == '\0' && !n)
-	{
-		a = (char *)&str[i];
-		return (a);
-	}
-	return (NULL);
+{	
+	while (*str && *str != (char)n)
+		str++;
+	return (*str == (char)n ? (char *)str : NULL);
 }

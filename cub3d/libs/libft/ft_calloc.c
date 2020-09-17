@@ -14,10 +14,12 @@
 
 void	*ft_calloc(size_t num, size_t size)
 {
-	char	*arr;
+	void	*arr;
 
-	arr = malloc(size * num);
-	if (!arr)
+	if (num != 0 && size != 0 && size * num / num != size)
 		return (NULL);
-	return (ft_memset(arr, '\0', size * num));
+	if (!(arr = (void *)malloc_mm(num * size)))
+		return(NULL);
+	ft_bzero(arr, num * size);
+	return (arr);
 }

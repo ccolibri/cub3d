@@ -22,7 +22,7 @@ static void ft_sprite(t_all *all, t_sprite spr)
             spr.tex_pos += spr.step;
             if (spr.y_ff + j > all->frame.h || spr.y_ff + i < 0 || *spr.clr == 0x0)
                 continue;
-            mlx_pixel_put(&all->frame, &all->img, spr.x_ff + i, spr.y_ff + j, *spr.clr);
+            my_mlx_pixel_put(&all->img, spr.x_ff + i, spr.y_ff + j, *spr.clr);
         }
     }
 }

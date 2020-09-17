@@ -11,80 +11,55 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-int					memory_free(char **s, char **s2)
+static int	check_over(char *over, char **new_line_ptr, char **line)
 {
-	if (*s)
-	{
-		free(*s);
-		*s = NULL;
-	}
-	if (*s2)
-	{
-		free(*s2);
-		*s2 = NULL;
-	}
-	return (-1);
-}
+	int i;
 
-char				*chk_ost(char *ost, char **line)
-{
-	char			*nline;
-
-	nline = NULL;
-	if (ost)
+	i = 0;
+	*new_line_ptr = NULL;
+	if ((*new_line_ptr = ft_strchr(over, '\n')))
 	{
-		if ((nline = ft_strchr(ost, '\n')))
-		{
-			*nline = '\0';
-			*line = ft_strdup(ost);
-			nline++;
-			ft_strcpy(ost, nline);
-		}
-		else
-			*line = ft_strdup(ost);
+		**new_line_ptr = '\0';
+		if (!(*line = ft_strdup(over)))
+			return (-1);
+		ft_strcpy(over, ++(*new_line_ptr));
 	}
 	else
-		*line = ft_strdup("");
-	return (nline);
-}
-
-void				do_if(char **buf, char **nline, char **ost)
-{
-	if ((*nline = ft_strchr(*buf, '\n')))
 	{
-		**nline = '\0';
-		(*nline)++;
-		free(*ost);
-		*ost = ft_strdup(*nline);
+		if (!(*line = ft_strdup(over)))
+			return (-1);
+		while (i <= BUFFER_SIZE)
+			over[i++] = '\0';
 	}
+	return (1);
 }
 
-int					get_next_line(int fd, char **line)
+int			get_next_line(int fd, char **line)
 {
-	static char		*ost;
-	char			*buf;
-	char			*nline;
-	int				n;
+	static char	over[BUFFER_SIZE + 1];
+	char		buf[BUFFER_SIZE + 1];
+	char		*new_line_ptr;
+	char		*temp;
+	int			read_bytes;
 
-	if (fd < 0 || BUFFER_SIZE < 1 || !line)
+	read_bytes = 1;
+	if (BUFFER_SIZE < 1 || fd < 0 || !line || (read(fd, buf, 0) != 0) || \
+	!(check_over(over, &new_line_ptr, line)))
 		return (-1);
-	n = 1;
-	nline = chk_ost(ost, line);
-	if (!(buf = malloc((BUFFER_SIZE + 1) * sizeof(char))))
-		return (memory_free(&buf, line));
-	while (!nline && (n = read(fd, buf, BUFFER_SIZE)))
+	while (!new_line_ptr && ((read_bytes = read(fd, buf, BUFFER_SIZE)) > 0))
 	{
-		if (n < 0)
+		buf[read_bytes] = '\0';
+		if ((new_line_ptr = ft_strchr(buf, '\n')))
 		{
-			return (memory_free(&ost, &buf));
+			*new_line_ptr = '\0';
+			ft_strcpy(over, ++new_line_ptr);
 		}
-		buf[n] = '\0';
-		do_if(&buf, &nline, &ost);
-		*line = ft_strjoin(*line, buf);
+		temp = *line;
+		if (!(*line = ft_strjoin(*line, buf)))
+			return (-1);
+		free_mm(temp);
 	}
-	free(buf);
-	if (n == 0 && ost != 0)
-		memory_free(&ost, &ost);
-	return (n || nline) ? 1 : 0;
+	return ((ft_strlen(over) || read_bytes > 0) ? 1 : read_bytes);
 }

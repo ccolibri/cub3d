@@ -25,7 +25,7 @@ static void ft_align(t_all *all, int max)
     while (all->map.tab[i] != NULL)
     {
         tmp = all->map.tab[i];
-        all->map.tab[i] = malloc_mm(sizeof(char *) * max + 1);
+        all->map.tab[i] = malloc_mm(sizeof(char) * max + 1);
         ft_memset(all->map.tab[i], ' ', max);
         all->map.tab[i][max] = '\0';
         ft_memcpy(all->map.tab[i], tmp, ft_strlen(tmp));
@@ -90,7 +90,7 @@ void    parse_map(t_all *all, t_list *params)
     max = 0;
     while (params && ft_atoi(params->content) == 0)
         params = params->next;
-    if (!(all->map.tab = malloc_mm(sizeof(char *) * ft_lstsize(params) + 1)))
+    if (!(all->map.tab = malloc_mm(sizeof(char *) * (ft_lstsize(params) + 1))))
         exit_cub("Error : Malloc for map failed", all);
     while (params)
     {
@@ -102,7 +102,7 @@ void    parse_map(t_all *all, t_list *params)
     all->map.tab[i] = NULL;
     ft_align(all, max);
     validate_map(all, all->map.tab);
-    max = max < i ? i :max;
+    max = max < i ? i : max;
     all->map.pix = all->frame.h > all->frame.w ? all->frame.h / max : all->frame.w / max;
     all->plr.x *= all->map.pix;
     all->plr.y *= all->map.pix;

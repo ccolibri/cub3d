@@ -45,9 +45,10 @@ static void		make_color(char *str, t_all *all, char color)
 		exit_cub("Error : Malloc failed", all);
 	i = 0;
 	while (clr && clr[i] != NULL)
-	{
+	{   
 		if ((rgb[i] = ft_atoi(clr[i])) > 255 || clr[i] < 0 || i > 2)
 			exit_cub("Error : Invalid color configutation", all);
+		free_mm(clr[i]);
 		i++;
 	}
 	free_mm(clr);
@@ -88,7 +89,7 @@ static void		parse_params(t_list	*list, t_all *all)
 		len = ft_strlen(list->content);
 		if (ft_strnstr(list->content, "R ", len))
 			make_res(list->content, all);
-		else if ((ft_strnstr(list->content, "NO ", len)))
+		else if (ft_strnstr(list->content, "NO ", len))
 			make_texture(list->content, all, 'N');
 		else if (ft_strnstr(list->content, "SO ", len))
 			make_texture(list->content, all, 'S');

@@ -12,86 +12,72 @@
 
 #include "libft.h"
 
-static size_t		cnt_words(char const *str, char c)
+static int	count_words(char const *s, char c)
 {
-	char			start;
-	size_t			n;
+	int count;
+	int i;
 
-	start = 1;
-	n = 0;
-	while (*str)
-	{
-		if (*(str++) != c)
-		{
-			if (start)
-				n++;
-			start = 0;
-		}
-		else
-			start = 1;
-	}
-	return (n);
-}
-
-static void			arr_free(char **arr)
-{
-	int				i;
-
+	count = 0;
 	i = 0;
-	while (arr[i])
+	while (s && s[i])
 	{
-		free(arr[i]);
+		if (s[i] != c)
+		{
+			count++;
+			while (s[i] != c && s[i] && s[i + 1])
+				i++;
+		}
 		i++;
 	}
-	free(arr);
+	return (count);
 }
 
-static size_t		str_len(char const *str, char c)
+static int	count_len(char const *str, char c)
 {
-	size_t			i;
+	int i;
 
 	i = 0;
-	while (str[i] != c && str[i] != '\0')
+	while (str && str[i] && str[i] != c)
 		i++;
 	return (i);
 }
 
-static char			**str_cpy(char **arr, char const *str, char c)
+static void	*ft_free_mm(char **tab)
 {
-	int				i;
-	int				j;
-	int				len;
-	int				count;
+	int i;
 
 	i = 0;
-	count = cnt_words(str, c);
-	while (i < count)
-	{
-		while (*str && *str == c)
-			str++;
-		len = str_len(str, c);
-		if (!(arr[i] = (char *)malloc((len + 1) * sizeof(char))))
-		{
-			arr_free(arr);
-			return (NULL);
-		}
-		j = 0;
-		while (j < len)
-			arr[i][j++] = *str++;
-		arr[i][j] = '\0';
-		i++;
-	}
-	arr[i] = NULL;
-	return (arr);
+	while (tab[i] != NULL)
+		free_mm(tab[i++]);
+	free_mm(tab);
+	return (NULL);
 }
 
 char				**ft_split(char const *s, char c)
 {
-	char			**arr;
+	int		i;
+	int		j;
+	int		word_count;
+	char	*str;
+	char	**array;
 
-	if (!s)
+	str = (char *)s;
+	i = 0;
+	j = 0;
+	word_count = count_words(s, c);
+	if (!s || !(array = (char **)malloc_mm((word_count + 1) * sizeof(char *))))
 		return (NULL);
-	if (!(arr = (char **)malloc(sizeof(char *) * (cnt_words(s, c) + 1))))
-		return (NULL);
-	return (str_cpy(arr, s, c));
+	while (j < word_count)
+	{
+		i = count_len(str, c);
+		if (i > 0)
+		{
+			if (!(array[j++] = ft_substr(str, 0, i)))
+				return (ft_free_mm(array));
+		}
+		i++;
+		str += i;
+	}
+	array[j] = NULL;
+	return (array);
 }

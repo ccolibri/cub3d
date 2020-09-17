@@ -186,5 +186,6 @@ void    raycast(t_all *all);
 void    rendering_spr(t_all *all);
 int     ft_wall(double x, double y, t_all *all);
 void    plr_spot(t_all *all);
+void    my_mlx_pixel_put(t_img *img, int x, int y, unsigned int color);
 
 #endif

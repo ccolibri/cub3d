@@ -48,14 +48,14 @@ static void rendering_walls(t_all *all)
     while (i < all->frame.w)
     {
         text = init_side(all, all->ray[i]);
-        c = create_stripe(all, 1, text);
+        c = create_stripe(all, i, text);
         while (c.y < c.top + c.height)
         {
             c.t_y = (unsigned int)c.text_pos & ((unsigned int)text.height - 1);
             c.color = text.addr + (c.t_y * text.len + c.t_x * (text.bpp / 8));
             c.text_pos += c.step;
             if (c.y >= 0 && c.y <= all->frame.h && i >= 0 && 1 <= all->frame.w)
-                mlx_pixel_put(&all->frame, &all->img, i, c.y, *(unsigned int *)c.color);
+                my_mlx_pixel_put(&all->img, i, c.y, *(unsigned int *)c.color);
             c.y++;
         }
         i++;

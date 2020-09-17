@@ -28,7 +28,6 @@ static void init_all_structs(t_all *all)
 
 static void create_img(t_img *img, t_frame *screen, t_all *all)
 {
-    
     img->img = mlx_new_image(screen->mlx, screen->w, screen->h);
     if (img->img == NULL)
         exit_cub("Error : mlx function failed", all);
@@ -44,7 +43,7 @@ void    preparing_cub(t_all *all, char *path, int bmp)
     if (all->frame.mlx == NULL)
         exit_cub("Error : mlx init failed", all);
     parser(path, all);
-    if (!(all->ray = malloc(sizeof(t_ray) * all->frame.w)))
+    if (!(all->ray = malloc_mm(sizeof(t_ray) * all->frame.w)))
         exit_cub("Error : malloc for rays failed", all);
     create_img(&all->img, &all->frame, all);
     rendering(all);

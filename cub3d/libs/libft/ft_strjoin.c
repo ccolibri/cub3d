@@ -12,24 +12,22 @@
 
 #include "libft.h"
 
-char		*ft_strjoin(char *s1, char const *s2)
+char		*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*arr;
-	size_t	length;
+	char	*new_str;
+	int		len;
 	int		i;
 
+	if (!s1 || !s2)
+		return (NULL);
+	len = ft_strlen(s1) + ft_strlen(s2) + 1;
 	i = 0;
-	if (s1 == NULL && s2 == NULL)
+	if (!(new_str = (char *)malloc_mm(len * sizeof(char))))
 		return (NULL);
-	length = ft_strlen(s1) + ft_strlen(s2);
-	if (!(arr = malloc((sizeof(char) * (length + 1)))))
-		return (NULL);
-	while (s1 && *s1 != '\0')
-		arr[i++] = *s1++;
-	free(s1 - i);
-	while (s2 && *s2 != '\0')
-		arr[i++] = *s2++;
-	arr[i] = '\0';
-	return (arr);
-
+	while (*s1)
+		new_str[i++] = *s1++;
+	while (*s2)
+		new_str[i++] = *s2++;
+	new_str[i] = '\0';
+	return (new_str);
 	}

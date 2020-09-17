@@ -39,7 +39,7 @@ public class MlxMain {
 		NSApp.setActivationPolicy(NSApplication.ActivationPolicy.regular)
 	}
 
-	device = MTLCreateSystemDefaultDevice()!
+	device = MTLCreateSystemDefaultDevice()
 	loopParam = UnsafeMutableRawPointer(&inLoop)  /// dummy addr init
 
 	/// Add observer anyway to flush pixels every loop. If loop_hook exists, call it.

@@ -11,7 +11,7 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror -g
 
 MLX_DIR = $(LIB_DIR)/mlx
-MLX_FLAGS = -L $(MLX_DIR) -Imlx -lmlx -framework OpenGL -framework AppKit
+MLX_FLAGS = -L $(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 LIBFT_DIR = $(LIB_DIR)/libft
 LIBFT_FLAGS = -L $(LIBFT_DIR) -lft
 

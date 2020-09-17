@@ -14,25 +14,16 @@
 
 char				*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char			*arr;
-	size_t			i;
-	size_t			size;
+	char	*substr;
 
-	i = 0;
 	if (!s)
 		return (NULL);
-	if (ft_strlen(s) < start)
-		return (ft_strdup(""));
-	size = ft_strlen(s) - start;
-	if (size < len)
-		len = size;
-	if (!(arr = (char *)malloc((sizeof(char) * (len + 1)))))
+	if (ft_strlen(s) <= start)
+		return (substr = ft_calloc(1, sizeof(char)));
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
+	if (!(substr = malloc_mm((len + 1) * sizeof(char))))
 		return (NULL);
-	while (i < len && s[start])
-	{
-		arr[i] = s[start + i];
-		i++;
-	}
-	arr[i] = '\0';
-	return (arr);
+	ft_strlcpy(substr, s + start, len + 1);
+	return (substr);
 }

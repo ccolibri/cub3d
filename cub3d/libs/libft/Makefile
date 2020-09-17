@@ -45,7 +45,6 @@ SRC = ft_atoi.c\
 	ft_tolower.c\
 	ft_toupper.c\
 	ft_putchar.c\
-	ft_putstr_fd.c\
 	get_next_line.c\
 	ft_strcpy.c\
 	ft_putstr.c\

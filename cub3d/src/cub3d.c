@@ -5,7 +5,7 @@ int     ft_wall(double x, double y, t_all *all)
     int m_x;
     int m_y;
 
-    if (x < 0 || all-> frame.w || y < 0 || y > all->frame.h)
+    if (x < 0 || all->frame.w || y < 0 || y > all->frame.h)
         return(OUTSIDE);
     m_x = (int)((x / all->map.pix));
     m_y = (int)((y / all->map.pix));
