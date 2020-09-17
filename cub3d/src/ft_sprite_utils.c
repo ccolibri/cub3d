@@ -7,18 +7,18 @@ static void spr_params(t_all *all)
     i = 0;
     while (i < all->map.sprites)
     {
-        all->sprite[i].angle = atan2(all->sprite[i].y - all->plr.y, 
+        all->sprite[i].angle = atan2(all->sprite[i].y - all->plr.y, \
                             all->sprite[i].x - all->plr.x);
         while (all->sprite[i].angle - all->plr.angle > M_PI)
             all->sprite[i].angle -= 2.0 * M_PI;
         while (all->sprite[i].angle - all->plr.angle < -M_PI)
             all->sprite[i].angle += 2.0 * M_PI;
         all->sprite[i].angle -= all->plr.angle;
-        all->sprite[i].dist = sqrt(pow(all->sprite[i].x - all->plr.x, 2) + 
+        all->sprite[i].dist = sqrt(pow(all->sprite[i].x - all->plr.x, 2) + \
                                 pow(all->sprite[i].y - all->plr.y, 2));
-        all->sprite[i].size = (all->map.pix / all->sprite[i].dist) * 
+        all->sprite[i].size = (all->map.pix / all->sprite[i].dist) * \
                                 (all->frame.w / 2) / tan(FOV / 2);
-        all->sprite[i].x_ff = all->frame.w / (FOV * (180 / M_PI)) * 
+        all->sprite[i].x_ff = all->frame.w / (FOV * (180 / M_PI)) * \
             ((180 / M_PI * all->sprite[i].angle) + 30) - all->sprite[i].size / 2;
         all->sprite[i].y_ff = all->frame.h / 2 - all->sprite[i].size / 2;
         all->sprite[i].step = all->text.spr.height / all->sprite[i].size;
@@ -61,7 +61,7 @@ static void ft_sprite(t_all *all, t_sprite spr)
     i = -1;
     while (++i < spr.size)
     {
-        if (spr.x_ff + i > all->frame.w || spr.x_ff + i < 0 || 
+        if (spr.x_ff + i > all->frame.w || spr.x_ff + i < 0 || \
                     all->ray[i + (int)spr.x_ff].dist < spr.dist)
             continue;
         text_x = i / spr.size * all->text.spr.width;
@@ -70,7 +70,7 @@ static void ft_sprite(t_all *all, t_sprite spr)
         while (++j < spr.size)
         {
             text_y = (unsigned int)spr.tex_pos & (all->text.spr.height - 1);
-            spr.clr = (unsigned int *)(all->text.spr.addr + 
+            spr.clr = (unsigned int *)(all->text.spr.addr + \
                         (text_y * all->text.spr.len + text_x * (all->text.spr.bpp / 8)));
             spr.tex_pos += spr.step;
             if (spr.y_ff + j > all->frame.h || spr.y_ff + i < 0 || *spr.clr == 0x0)

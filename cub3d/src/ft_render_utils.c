@@ -28,10 +28,10 @@ static t_render_utils create_stripe(t_all *all, int i, t_img text)
     col.height = (all->map.pix / col.dist) * col.plane;
     col.top = all->frame.h / 2.0 - col.height / 2;
     if (all->ray[i].is_vert)
-        col.t_x = remainder(all->ray[i].hit_y, all->map.pix) / 
+        col.t_x = remainder(all->ray[i].hit_y, all->map.pix) / \
                     all->map.pix * text.width;
     else
-        col.t_x = remainder(all->ray[i].hit_x, all->map.pix) / 
+        col.t_x = remainder(all->ray[i].hit_x, all->map.pix) / \
                     all->map.pix * text.width;
     col.t_x = col.t_x & (unsigned int)(text.height - 1);
     col.step = text.height / col.height;
@@ -56,7 +56,7 @@ static void rendering_walls(t_all *all)
             c.t_y = (unsigned int)c.text_pos & ((unsigned int)text.height - 1);
             c.color = text.addr + (c.t_y * text.len + c.t_x * (text.bpp / 8));
             c.text_pos += c.step;
-            if (c.y >= 0 && c.y <= all->frame.h && i >= 0 && 1 <= all->frame.w)
+            if (c.y >= 0 && c.y <= all->frame.h && i >= 0 && i <= all->frame.w)
                 my_mlx_pixel_put(&all->img, i, c.y, *(unsigned int *)c.color);
             c.y++;
         }
@@ -66,7 +66,7 @@ static void rendering_walls(t_all *all)
 
 int         rendering(t_all *all)
 {
-    //mlx_do_sync(all->frame.mlx);
+    mlx_do_sync(all->frame.mlx);
     ft_floor_n_ceiling(0, 0, all);
     ft_floor_n_ceiling(0, all->frame.h / 2, all);
     plr_spot(all);

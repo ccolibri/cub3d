@@ -31,7 +31,8 @@ static void create_img(t_img *img, t_frame *screen, t_all *all)
     img->img = mlx_new_image(screen->mlx, screen->w, screen->h);
     if (img->img == NULL)
         exit_cub("Error : mlx function failed", all);
-    img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->len, &img->endian);
+    img->addr = mlx_get_data_addr(img->img, &img->bpp, \
+                        &img->len, &img->endian);
     if (img->addr == NULL)
         exit_cub("Error : mlx function failed", all);
 }

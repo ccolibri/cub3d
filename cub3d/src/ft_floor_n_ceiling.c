@@ -1,6 +1,6 @@
 #include "../includes/cub3d.h"
 
-void    my_mlx_pixel_put(t_img *img, int x, int y, unsigned int color)
+void    my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
     char *dst;
     
@@ -23,7 +23,7 @@ void ft_floor_n_ceiling(int x, int y, t_all *all)
     while (i <= x + width)
     {
         j = y;
-        while (j <= y + height)
+        while (j < y + height)
         {
             my_mlx_pixel_put(&all->img, i, j, color);
             j++;
