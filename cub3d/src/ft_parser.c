@@ -60,10 +60,10 @@ static void		make_color(char *str, t_all *all, char color)
 
 static void		make_res(char *str, t_all *all)
 {
-	int 	width;
-	int		height;
+	int 	width = 1920;
+	int		height = 1024;
 
-	mlx_get_screen_size(all->frame.mlx, &width, &height);
+	/*mlx_get_screen_size(all->frame.mlx, &width, &height);*/
 	if (all->frame.w != -1 || all->frame.h != -1)
 		exit_cub("Error : Multiple resolution", all);
 	str = ft_strchr(str, 'R');

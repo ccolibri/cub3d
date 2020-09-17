@@ -8,9 +8,9 @@ LIB_DIR = libs/
 INCLUDES = -I$(INC_DIR)
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -g
 
-MLX_DIR = $(LIB_DIR)/mlx
+MLX_DIR = $(LIB_DIR)/opengl
 MLX_FLAGS = -L $(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 LIBFT_DIR = $(LIB_DIR)/libft
 LIBFT_FLAGS = -L $(LIBFT_DIR) -lft

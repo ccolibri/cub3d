@@ -1,6 +1,6 @@
 #ifndef CUB3D_H
 # define CUB3D_H
-# include "../libs/mlx/mlx.h"
+# include "../libs/opengl/mlx.h"
 # include "../libs/libft/libft.h"
 # include <math.h>
 # include <fcntl.h>
