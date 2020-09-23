@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccaptain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/11 12:44:46 by ccaptain          #+#    #+#             */
-/*   Updated: 2020/08/11 18:56:56 by ccaptain         ###   ########.fr       */
+/*   Updated: 2020/09/20 20:58:33 by ccaptain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static void		make_texture(char *str, t_all *all, char type)
 
 static void		make_color(char *str, t_all *all, char color)
 {
-	char	**clr;
-	int		rgb[3];
-	int		i;
+	char		**clr;
+	int			rgb[3];
+	int			i;
 
 	while (*str && ft_isspace(*str))
 		str++;
@@ -45,7 +45,7 @@ static void		make_color(char *str, t_all *all, char color)
 		exit_cub("Error : Malloc failed", all);
 	i = 0;
 	while (clr && clr[i] != NULL)
-	{   
+	{
 		if ((rgb[i] = ft_atoi(clr[i])) > 255 || clr[i] < 0 || i > 2)
 			exit_cub("Error : Invalid color configutation", all);
 		free_mm(clr[i]);
@@ -60,10 +60,10 @@ static void		make_color(char *str, t_all *all, char color)
 
 static void		make_res(char *str, t_all *all)
 {
-	int 	width = 1920;
-	int		height = 1024;
+	int		width;
+	int		height;
 
-	/*mlx_get_screen_size(all->frame.mlx, &width, &height);*/
+	mlx_get_screen_size(all->frame.mlx, &width, &height);
 	if (all->frame.w != -1 || all->frame.h != -1)
 		exit_cub("Error : Multiple resolution", all);
 	str = ft_strchr(str, 'R');
@@ -80,7 +80,7 @@ static void		make_res(char *str, t_all *all)
 	all->frame.h = all->frame.h > height ? height : all->frame.h;
 }
 
-static void		parse_params(t_list	*list, t_all *all)
+static void		parse_params(t_list *list, t_all *all)
 {
 	size_t		len;
 
@@ -109,13 +109,13 @@ static void		parse_params(t_list	*list, t_all *all)
 	}
 }
 
-void	parser(char *map, t_all *all)
+void			parser(char *map, t_all *all)
 {
-	int	fd;
-	char	*line;
-	t_list	*params;
-	t_list	*ptr;
-	int		gnl;
+	int			fd;
+	char		*line;
+	t_list		*params;
+	t_list		*ptr;
+	int			gnl;
 
 	fd = open(map, O_RDONLY);
 	if (fd < 0)

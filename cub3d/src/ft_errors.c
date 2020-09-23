@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_errors.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccaptain <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/09/20 20:00:03 by ccaptain          #+#    #+#             */
+/*   Updated: 2020/09/20 20:01:17 by ccaptain         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
-int		close_me(t_all *all)
+int			close_me(t_all *all)
 {
 	exit_cub("Exit from cub.", all);
 	return (0);
 }
 
-static void close_mlx(t_all *all)
+static void	close_mlx(t_all *all)
 {
-	if(all->frame.mlx == NULL)
+	if (all->frame.mlx == NULL)
 		return ;
 	if (all->frame.win)
 		mlx_destroy_window(all->frame.mlx, all->frame.win);
@@ -28,7 +40,7 @@ static void close_mlx(t_all *all)
 		free(all->frame.mlx);
 }
 
-void	exit_cub(char *error,t_all *all)
+void		exit_cub(char *error, t_all *all)
 {
 	if (errno != 0 && errno != 11)
 		perror(error);
