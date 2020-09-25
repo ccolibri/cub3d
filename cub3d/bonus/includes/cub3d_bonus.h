@@ -12,14 +12,15 @@
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# include "../libs/opengl/mlx.h"
-# include "../libs/libft/libft.h"
+# include "../../libs/opengl/mlx.h"
+# include "../../libs/libft/libft.h"
 # include <math.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <limits.h>
 # include <errno.h>
 # include <stdint.h>
+# include <signal.h>
 
 # define FALSE 0
 # define TRUE 1

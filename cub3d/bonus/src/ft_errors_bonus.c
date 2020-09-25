@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 int			close_me(t_all *all)
 {
@@ -49,5 +49,6 @@ void		exit_cub(char *error, t_all *all)
 	close_mlx(all);
 	free_mm(NULL);
 	errno = errno == 11 ? 0 : errno;
+	kill(all->frame.pid, SIGTERM);
 	exit(errno);
 }

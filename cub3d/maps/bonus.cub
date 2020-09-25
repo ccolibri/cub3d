@@ -1,18 +1,18 @@
-R 1024 748
+R 1920 1080
 
-NO ./textures/wood.xpm
+NO ./textures/north.xpm
 
 SO ./textures/greystone.xpm
 
-WE ./textures/colorstone.xpm
+WE ./textures/west.xpm
 
-EA ./textures/redbrick.xpm
+EA ./textures/east.xpm
 
-S ./textures/star.xpm
+S ./textures/pigeon.xpm
 
-F 224,172,105
+F 128,128,128
 
-C 205,249,255
+C 0,0,0
 
         1111111111111111111111111
         10000000001100000000000W1
