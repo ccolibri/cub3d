@@ -29,7 +29,6 @@ void		validate_clr(char *line, char clr, t_all *all)
 		exit_cub("Error : Multiple floor color instruction", all);
 	if (clr == 'C' && all->map.c_clr != -1)
 		exit_cub("Error : Multiple ceiling color instruction", all);
-	printf("%s\n", line);
 	while (line[i])
 	{
 		if (!ft_isdigit(line[i]) && line[i] != ',')
