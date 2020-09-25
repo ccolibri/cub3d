@@ -32,8 +32,11 @@ int					ft_atoi(char const *str)
 	{
 		if ((r * 10 + (*str - '0')) < r)
 			return ((n > 0) ? -1 : 0);
+		if ((r) > 8000)
+			return ((int)(r * n));
 		r = r * 10 + (*str - '0');
 		str++;
 	}
+	
 	return ((int)(r * n));
 }

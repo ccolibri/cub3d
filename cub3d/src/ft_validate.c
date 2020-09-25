@@ -6,7 +6,7 @@
 /*   By: ccaptain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 20:27:54 by ccaptain          #+#    #+#             */
-/*   Updated: 2020/09/20 20:28:57 by ccaptain         ###   ########.fr       */
+/*   Updated: 2020/09/25 15:25:33 by ccaptain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,15 @@ void		validate_clr(char *line, char clr, t_all *all)
 {
 	int		i;
 
-	i = 0;
+	i = 1;
 	if (clr == 'F' && all->map.f_clr != -1)
 		exit_cub("Error : Multiple floor color instruction", all);
 	if (clr == 'C' && all->map.c_clr != -1)
 		exit_cub("Error : Multiple ceiling color instruction", all);
+	printf("%s\n", line);
 	while (line[i])
 	{
-		if (!ft_isdigit(line[i]) && line[i] != ',' && !ft_isspace(line[i]))
+		if (!ft_isdigit(line[i]) && line[i] != ',')
 			exit_cub("Error : Invalid color configuration", all);
 		i++;
 	}
@@ -98,15 +99,15 @@ void		validate_map(t_all *all, char **map)
 			if (map[i][j] != '1' && map[i][j] != ' ')
 			{
 				if (j == 0 || j == all->map.x - 1)
-					exit_cub("Error : Invalid map", all);
+					exit_cub("Error : Invalid maps", all);
 				if (i == 0 || i == all->map.y - 1)
-					exit_cub("Error : Invalid map", all);
+					exit_cub("Error : Invalid mapss", all);
 				if (j + 1 < all->map.x && map[i][j + 1] == ' ')
-					exit_cub("Error : Invalid map", all);
+					exit_cub("Error : Invalid mapsss", all);
 				if (map[i][j - 1] == ' ' || map[i - 1][j] == ' ')
-					exit_cub("Error : Invalid map", all);
+					exit_cub("Error : Invalid mapssss", all);
 				if (i + 1 < all->map.y && map[i + 1][j] == ' ')
-					exit_cub("Error : Invalid map", all);
+					exit_cub("Error : Invalid mapsssss", all);
 			}
 		}
 	}

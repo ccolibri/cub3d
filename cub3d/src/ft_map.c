@@ -16,12 +16,12 @@ static void		init_player(char wall, int x, int y, t_all *all)
 {
 	if (all->plr.angle != -1 || all->plr.x != 0 || all->plr.y != 0)
 		exit_cub("Error : Multiple player", all);
-	all->plr.x = x;
-	all->plr.y = y;
+	all->plr.x = x + 0.5;
+	all->plr.y = y + 0.5;
 	if (wall == 'N')
-		all->plr.angle = M_PI / 2;
-	else if (wall == 'S')
 		all->plr.angle = 3 * M_PI / 2;
+	else if (wall == 'S')
+		all->plr.angle = M_PI / 2;
 	else if (wall == 'W')
 		all->plr.angle = M_PI;
 	else if (wall == 'E')
@@ -84,7 +84,10 @@ static void		parse_line(char *str, int y, t_all *all)
 	while (str[x] != '\0')
 	{
 		if (str[x] == 'N' || str[x] == 'S' || str[x] == 'W' || str[x] == 'E')
+		{
+			all->plr.pos = 1;
 			init_player(str[x], x, y, all);
+		}
 		else if (str[x] == '2')
 			all->map.sprites++;
 		else if (str[x] != '0' && str[x] != '1' && str[x] != ' ')
@@ -113,7 +116,7 @@ void			parse_map(t_all *all, t_list *params)
 	}
 	all->map.tab[i] = NULL;
 	ft_align(all, m);
-	validate_map(all, all->map.tab);
+	check_parser(all);
 	m = m < i ? i : m;
 	all->map.pix = all->frame.h > all->frame.w \
 				? all->frame.h / m : all->frame.w / m;

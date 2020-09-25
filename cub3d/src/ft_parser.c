@@ -74,6 +74,13 @@ static void		make_res(char *str, t_all *all)
 	while (*str && ft_isdigit(*str))
 		str++;
 	all->frame.h = ft_atoi(str);
+	while (*str && ft_isspace(*str))
+		str++;
+	while (*str)
+	{
+		if (ft_isspace(*str++))
+			exit_cub("Error : Invalid resolution string", all);
+	}
 	if (all->frame.w <= 0 || all->frame.h <= 0)
 		exit_cub("Error : Invalid resolution", all);
 	all->frame.w = all->frame.w > width ? width : all->frame.w;

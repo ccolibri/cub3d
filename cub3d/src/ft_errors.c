@@ -6,7 +6,7 @@
 /*   By: ccaptain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 20:00:03 by ccaptain          #+#    #+#             */
-/*   Updated: 2020/09/20 20:01:17 by ccaptain         ###   ########.fr       */
+/*   Updated: 2020/09/23 15:47:50 by ccaptain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ void		exit_cub(char *error, t_all *all)
 	close_mlx(all);
 	free_mm(NULL);
 	errno = errno == 11 ? 0 : errno;
+	kill(all->frame.pid, SIGTERM);
 	exit(errno);
 }

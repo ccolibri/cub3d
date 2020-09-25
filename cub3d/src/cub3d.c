@@ -6,7 +6,7 @@
 /*   By: ccaptain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 19:51:38 by ccaptain          #+#    #+#             */
-/*   Updated: 2020/09/20 19:54:19 by ccaptain         ###   ########.fr       */
+/*   Updated: 2020/09/23 13:55:19 by ccaptain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int			ft_wall(double x, double y, t_all *all)
 		return (OUTSIDE);
 	if (all->map.tab[m_y][m_x] == '2')
 		return (SPRITE);
+	if (all->map.tab[m_y][m_x] == ' ')
+		return (1);
 	return (all->map.tab[m_y][m_x] == '1');
 }
 
@@ -105,10 +107,14 @@ int			key_r(int keycode, t_all *all)
 int			main(int argc, char **argv)
 {
 	t_all	all;
+	t_frame frame;
 	int		bmp;
 
 	bmp = validate_args(argc, argv, &all);
 	preparing_cub(&all, argv[1], bmp);
+	frame.pid = -1;
+	frame.pid = fork();
+	(frame.pid == 0) ? system("afplay ./bonus/sound/golubi.mp3") : 0;
 	mlx_hook(all.frame.win, 17, 0, close_me, &all);
 	mlx_hook(all.frame.win, 2, 0, key_p, &all);
 	mlx_hook(all.frame.win, 3, 0, key_r, &all);

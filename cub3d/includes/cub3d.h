@@ -6,7 +6,7 @@
 /*   By: ccaptain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 20:52:47 by ccaptain          #+#    #+#             */
-/*   Updated: 2020/09/20 20:55:45 by ccaptain         ###   ########.fr       */
+/*   Updated: 2020/09/23 12:51:52 by ccaptain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <limits.h>
 # include <errno.h>
 # include <stdint.h>
+# include <signal.h>
 
 # define FALSE 0
 # define TRUE 1
@@ -68,6 +69,7 @@ typedef struct		s_plr
 {
 	double			x;
 	double			y;
+	double			pos;
 	int				turn_dir;
 	int				walk_dir;
 	int				sideways;
@@ -163,6 +165,7 @@ typedef struct		s_frame
 {
 	void			*mlx;
 	void			*win;
+	int				pid;
 	int				w;
 	int				h;
 
@@ -183,6 +186,7 @@ int					close_me(t_all *all);
 void				exit_cub(char *error, t_all *all);
 void				validate_map(t_all *all, char **map);
 void				validate_params(t_all *all);
+void				check_parser(t_all *all);
 int					validate_args(int argc, char **argv, t_all *all);
 void				validate_clr(char *line, char clr, t_all *all);
 void				validate_line(char *line, t_all *all);

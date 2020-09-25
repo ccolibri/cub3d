@@ -12,6 +12,13 @@
 
 #include "../includes/cub3d.h"
 
+void			check_parser(t_all *all)
+{
+	if (all->plr.pos <= 0)
+		exit_cub("Error : No starting position", all);
+	validate_map(all, all->map.tab);
+}
+
 static void		init_all_structs(t_all *all)
 {
 	all->frame.win = NULL;
@@ -52,6 +59,7 @@ static void		create_img(t_img *img, t_frame *screen, t_all *all)
 void			preparing_cub(t_all *all, char *path, int bmp)
 {
 	init_all_structs(all);
+	all->plr.pos = 0;
 	all->frame.mlx = mlx_init();
 	if (all->frame.mlx == NULL)
 		exit_cub("Error : mlx init failed", all);
