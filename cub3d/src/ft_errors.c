@@ -49,5 +49,5 @@ void		exit_cub(char *error, t_all *all)
 	close_mlx(all);
 	free_mm(NULL);
 	errno = errno == 11 ? 0 : errno;
-	exit(errno);
+	exit(0);
 }

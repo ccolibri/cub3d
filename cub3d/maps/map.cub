@@ -1,12 +1,12 @@
 R 1024 748
 
-NO ./textures/wood.xpm
+NO ./textures/redbrick.xpm
 
-SO ./textures/greystone.xpm
+SO ./textures/colorstone.xpm
 
-WE ./textures/colorstone.xpm
+WE ./textures/greystone.xpm
 
-EA ./textures/redbrick.xpm
+EA ./textures/wood.xpm
 
 S ./textures/star.xpm
 

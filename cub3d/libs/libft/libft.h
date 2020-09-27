@@ -6,7 +6,7 @@
 /*   By: ccaptain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/29 23:27:07 by ccaptain          #+#    #+#             */
-/*   Updated: 2020/08/11 18:23:27 by ccaptain         ###   ########.fr       */
+/*   Updated: 2020/09/27 20:40:41 by ccaptain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ void				ft_putendl(char *s);
 void				ft_putnbr_fd(int n, int fd);
 int					ft_putstr(char *s, int len);
 
-
 /*
 						************* LIST FUNCTION **************
 */
@@ -105,17 +104,19 @@ void				ft_lstdelone(t_list *lst, void (*del)(void *));
 void				ft_lstclear(t_list **lst, void (*del)(void *));
 int					ft_lstsize(t_list *lst);
 
-/*	
-				*******GNL*******
+/*
+				******* GNL *******
 */
-int		get_next_line(int fd, char **line);
+
+int					get_next_line(int fd, char **line);
 
 /*
-				*****MEMORY_MANAGE*****
+				***** MEMORY_MANAGE *****
 */
-void    free_mm(void *ptr);
-void    *malloc_mm(size_t size);
-void    *calloc_mm(size_t nmem, size_t size);
-void	mem_manager(void *ptr, int action);
+
+void				free_mm(void *ptr);
+void				*malloc_mm(size_t size);
+void				*calloc_mm(size_t nmem, size_t size);
+void				mem_manager(void *ptr, int action);
 
 #endif

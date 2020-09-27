@@ -6,7 +6,7 @@
 /*   By: ccaptain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/06 13:48:27 by ccaptain          #+#    #+#             */
-/*   Updated: 2020/08/11 17:58:35 by ccaptain         ###   ########.fr       */
+/*   Updated: 2020/09/27 20:34:18 by ccaptain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,4 @@ char		*ft_strjoin(char const *s1, char const *s2)
 		new_str[i++] = *s2++;
 	new_str[i] = '\0';
 	return (new_str);
-	}
+}

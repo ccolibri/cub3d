@@ -6,13 +6,13 @@
 /*   By: ccaptain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/01 00:48:13 by ccaptain          #+#    #+#             */
-/*   Updated: 2020/05/04 16:01:54 by ccaptain         ###   ########.fr       */
+/*   Updated: 2020/09/27 20:36:38 by ccaptain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *s1, const char *s2, size_t length)
+char		*ft_strnstr(const char *s1, const char *s2, size_t length)
 {
 	size_t	i;
 	size_t	j;
