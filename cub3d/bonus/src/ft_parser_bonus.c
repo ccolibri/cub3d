@@ -12,23 +12,22 @@
 
 #include "../includes/cub3d_bonus.h"
 
-static void		make_texture(char *str, t_all *all, char type)
+static int		cnt_comma(char *str)
 {
-	while (*str && ft_isspace(*str))
-		str++;
-	str = str + 2;
-	while (*str && ft_isspace(*str))
-		str++;
-	if (type == 'N')
-		import_text(str, &all->text.n, all);
-	if (type == 'S')
-		import_text(str, &all->text.s, all);
-	if (type == 'W')
-		import_text(str, &all->text.w, all);
-	if (type == 'E')
-		import_text(str, &all->text.e, all);
-	if (type == 's')
-		import_text(str, &all->text.spr, all);
+	int			cnt;
+
+	cnt = 0;
+	while (*str)
+	{
+		if (*str == ',')
+		{
+			cnt++;
+			str++;
+		}
+		else 
+			str++;
+	}
+	return (cnt);
 }
 
 static void		make_color(char *str, t_all *all, char color)
@@ -40,7 +39,10 @@ static void		make_color(char *str, t_all *all, char color)
 	while (*str && ft_isspace(*str))
 		str++;
 	str++;
-	validate_clr(str, color, all);
+	if (cnt_comma(str) == 2)
+		validate_clr(str, color, all);
+	else
+		exit_cub("Error : Invalid color configuration", all);
 	if (!(clr = ft_split(str, ',')))
 		exit_cub("Error : Malloc failed", all);
 	i = 0;

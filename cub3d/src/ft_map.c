@@ -90,7 +90,7 @@ static void		parse_line(char *str, int y, t_all *all)
 		}
 		else if (str[x] == '2')
 			all->map.sprites++;
-		else if (str[x] != '0' && str[x] != '1' && str[x] != ' ')
+		else if (str[x] != '0' && str[x] != '1' && str[x] != ' ' && str[x] != '\0')
 			exit_cub("Error : Invalid symbols in the map", all);
 		x++;
 	}

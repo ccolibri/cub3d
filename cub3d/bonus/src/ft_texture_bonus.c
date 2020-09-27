@@ -25,3 +25,22 @@ void	import_text(char *path, t_img *text, t_all *all)
 	if (text->addr == NULL)
 		exit_cub("Error : Invalid texture file", all);
 }
+
+void		make_texture(char *str, t_all *all, char type)
+{
+	while (*str && ft_isspace(*str))
+		str++;
+	str = str + 2;
+	while (*str && ft_isspace(*str))
+		str++;
+	if (type == 'N')
+		import_text(str, &all->text.n, all);
+	if (type == 'S')
+		import_text(str, &all->text.s, all);
+	if (type == 'W')
+		import_text(str, &all->text.w, all);
+	if (type == 'E')
+		import_text(str, &all->text.e, all);
+	if (type == 's')
+		import_text(str, &all->text.spr, all);
+}

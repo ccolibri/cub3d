@@ -98,15 +98,15 @@ void		validate_map(t_all *all, char **map)
 			if (map[i][j] != '1' && map[i][j] != ' ')
 			{
 				if (j == 0 || j == all->map.x - 1)
-					exit_cub("Error : Invalid maps", all);
+					exit_cub("Error : Invalid map", all);
 				if (i == 0 || i == all->map.y - 1)
-					exit_cub("Error : Invalid mapss", all);
+					exit_cub("Error : Invalid map", all);
 				if (j + 1 < all->map.x && map[i][j + 1] == ' ')
-					exit_cub("Error : Invalid mapsss", all);
+					exit_cub("Error : Invalid map", all);
 				if (map[i][j - 1] == ' ' || map[i - 1][j] == ' ')
-					exit_cub("Error : Invalid mapssss", all);
+					exit_cub("Error : Invalid map", all);
 				if (i + 1 < all->map.y && map[i + 1][j] == ' ')
-					exit_cub("Error : Invalid mapsssss", all);
+					exit_cub("Error : Invalid map", all);
 			}
 		}
 	}

@@ -203,5 +203,6 @@ void				rendering_spr(t_all *all);
 int					ft_wall(double x, double y, t_all *all);
 void				plr_spot(t_all *all);
 void				my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void				make_texture(char *str, t_all *all, char type);
 
 #endif
