@@ -42,10 +42,7 @@ static void	close_mlx(t_all *all)
 
 void		exit_cub(char *error, t_all *all)
 {
-	if (errno != 0 && errno != 11)
-		perror(error);
-	else
-		ft_putendl(error);
+	ft_putendl(error);
 	close_mlx(all);
 	free_mm(NULL);
 	errno = errno == 11 ? 0 : errno;

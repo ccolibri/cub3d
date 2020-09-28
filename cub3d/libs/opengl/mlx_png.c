@@ -355,30 +355,30 @@ mlx_img_list_t	*mlx_int_parse_png(mlx_ptr_t *xvar, unsigned char *fptr, int size
 
   if ((err = mipng_magic(fptr, size)))
     {
-      warnx("mlx PNG error : %s", mipng_err[err]);
+      warnx("mlx PNG Error\n%s", mipng_err[err]);
       return ((mlx_img_list_t *)0);
     }
   fptr += PNG_MAGIC_SIZE;
   size -= PNG_MAGIC_SIZE;
   if ((err = mipng_structure(fptr, size, &hdr, &dat)))
     {
-      warnx("mlx PNG error : %s", mipng_err[err]);
+      warnx("mlx PNG Error\n%s", mipng_err[err]);
       return ((mlx_img_list_t *)0);
     }
   if ((err = mipng_verif_hdr(hdr, &pi)))
     {
-      warnx("mlx PNG error : %s", mipng_err[err]);
+      warnx("mlx PNG Error\n%s", mipng_err[err]);
       return ((mlx_img_list_t *)0);
     }
   if (!(img = mlx_new_image(xvar, pi.width, pi.height)))
     {
-      warnx("mlx PNG error : Can't create mlx image");
+      warnx("mlx PNG Error\nCan't create mlx image");
       return ((mlx_img_list_t *)0);
     }
   if ((err = mipng_data(img, dat, &pi)))
     {
       mlx_destroy_image(xvar, img);
-      warnx("mlx PNG error : %s", mipng_err[err]);
+      warnx("mlx PNG Error\n%s", mipng_err[err]);
       return ((mlx_img_list_t *)0);
     }
   return (img);

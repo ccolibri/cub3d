@@ -12,21 +12,28 @@
 
 #include "../includes/cub3d_bonus.h"
 
-static t_img			init_side(t_all *all, t_ray ray)
+static t_img			init_side(t_all *all, t_ray ray, int *flag)
 {
+	*flag = 0;
 	if (ray.is_vert)
 	{
 		if (ray.is_right)
 			return (all->text.e);
 		else
+		{
+			*flag = 1;
 			return (all->text.w);
+		}
 	}
 	else
 	{
 		if (ray.is_up)
 			return (all->text.s);
 		else
+		{
+			*flag = 1;
 			return (all->text.n);
+		}
 	}
 }
 
@@ -57,16 +64,19 @@ static void				rendering_walls(t_all *all)
 	t_img				text;
 	t_render_utils		c;
 	int					i;
+	int					flag;
 
 	i = 0;
 	while (i < all->frame.w)
 	{
-		text = init_side(all, all->ray[i]);
+		text = init_side(all, all->ray[i], &flag);
 		c = create_stripe(all, i, text);
 		while (c.y < c.top + c.height)
 		{
 			c.t_y = (unsigned int)c.text_pos & ((unsigned int)text.height - 1);
-			c.color = text.addr + (c.t_y * text.len + c.t_x * (text.bpp / 8));
+			c.color = !flag ? text.addr + (c.t_y * text.len + c.t_x *
+						(text.bpp / 8)) : text.addr + (c.t_y * text.len +
+							((64 - c.t_x) % 64) * (text.bpp / 8));
 			c.text_pos += c.step;
 			if (c.y >= 0 && c.y < all->frame.h && i >= 0 && i < all->frame.w)
 				my_mlx_pixel_put(&all->img, i, c.y, *(unsigned int *)c.color);

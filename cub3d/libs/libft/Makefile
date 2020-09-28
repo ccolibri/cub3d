@@ -51,30 +51,25 @@ SRC = ft_atoi.c\
 	ft_putendl.c\
 	ft_putnbr_fd.c\
 	manager.c\
-	mem_manage.c
-SRCBONUS = ft_lstnew.c\
-		ft_lstadd_back.c\
-		ft_lstadd_front.c\
-		ft_lstclear.c\
-		ft_lstdelone.c\
-		ft_lstiter.c\
-		ft_lstsize.c\
-		ft_lstmap.c\
-		ft_lstlast.c
+	mem_manage.c\
+	ft_lstnew.c\
+	ft_lstadd_back.c\
+	ft_lstadd_front.c\
+	ft_lstclear.c\
+	ft_lstdelone.c\
+	ft_lstiter.c\
+	ft_lstsize.c\
+	ft_lstmap.c\
+	ft_lstlast.c
+
 OFILES = ./*.o
 INCLUDE = ./libft.h
 
 OBJ = $(SRC:.c=.o)
 
-OBJBONUS = $(SRCBONUS:.c=.o)
-
 all : $(NAME)
 $(NAME) : $(OBJ) $(INCLUDE)
 	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
-
-bonus : $(OBJBONUS) $(INCLUDE)
-	@ar rc $(NAME) $(OBJBONUS)
 	@ranlib $(NAME)
 
 %.o : %.c
@@ -88,6 +83,4 @@ fclean : clean
 
 re: fclean all
 
-rebonus: fclean bonus
-
-.PHONY: all bonus clean fclean re rebonus
+.PHONY: all clean fclean re rebonus

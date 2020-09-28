@@ -15,7 +15,7 @@
 void			check_parser(t_all *all)
 {
 	if (all->plr.pos <= 0)
-		exit_cub("Error : No starting position", all);
+		exit_cub("Error\nNo starting position", all);
 	validate_map(all, all->map.tab);
 }
 
@@ -49,11 +49,11 @@ static void		create_img(t_img *img, t_frame *screen, t_all *all)
 {
 	img->img = mlx_new_image(screen->mlx, screen->w, screen->h);
 	if (img->img == NULL)
-		exit_cub("Error : mlx function failed", all);
+		exit_cub("Error\nmlx function failed", all);
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, \
 						&img->len, &img->endian);
 	if (img->addr == NULL)
-		exit_cub("Error : mlx function failed", all);
+		exit_cub("Error\nmlx function failed", all);
 }
 
 void			preparing_cub(t_all *all, char *path, int bmp)
@@ -62,10 +62,10 @@ void			preparing_cub(t_all *all, char *path, int bmp)
 	all->plr.pos = 0;
 	all->frame.mlx = mlx_init();
 	if (all->frame.mlx == NULL)
-		exit_cub("Error : mlx init failed", all);
+		exit_cub("Error\nmlx init failed", all);
 	parser(path, all);
 	if (!(all->ray = malloc_mm(sizeof(t_ray) * all->frame.w)))
-		exit_cub("Error : malloc for rays failed", all);
+		exit_cub("Error\nmalloc for rays failed", all);
 	create_img(&all->img, &all->frame, all);
 	rendering(all);
 	if (bmp == TRUE)

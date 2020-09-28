@@ -15,7 +15,7 @@
 static void		init_player(char wall, int x, int y, t_all *all)
 {
 	if (all->plr.angle != -1 || all->plr.x != 0 || all->plr.y != 0)
-		exit_cub("Error : Multiple player", all);
+		exit_cub("Error\nMultiple player", all);
 	all->plr.x = x + 0.5;
 	all->plr.y = y + 0.5;
 	if (wall == 'N')
@@ -58,7 +58,7 @@ static void		draw_sprite(t_all *all)
 	i = 0;
 	all->sprite = malloc_mm(sizeof(t_sprite) * (all->map.sprites));
 	if (all->sprite == NULL)
-		exit_cub("Error : Malloc for sprite failed", all);
+		exit_cub("Error\nMalloc for sprite failed", all);
 	while (all->map.tab[y])
 	{
 		x = 0;
@@ -91,7 +91,7 @@ static void		parse_line(char *str, int y, t_all *all)
 		else if (str[x] == '2')
 			all->map.sprites++;
 		else if (str[x] != '0' && str[x] != '1' && str[x] != ' ')
-			exit_cub("Error : Invalid symbols in the map", all);
+			exit_cub("Error\nInvalid symbols in the map", all);
 		x++;
 	}
 }
@@ -106,7 +106,7 @@ void			parse_map(t_all *all, t_list *params)
 	while (params && ft_atoi(params->content) == 0)
 		params = params->next;
 	if (!(all->map.tab = malloc_mm(sizeof(char *) * (ft_lstsize(params) + 1))))
-		exit_cub("Error : Malloc for map failed", all);
+		exit_cub("Error\nMalloc for map failed", all);
 	while (params)
 	{
 		parse_line(params->content, i, all);
