@@ -81,6 +81,8 @@ static void		parse_line(char *str, int y, t_all *all)
 	int			x;
 
 	x = 0;
+	if (!(ft_strchr(str, '1')))
+		exit_cub("Error\nEmpty string after map", all);
 	while (str[x] != '\0')
 	{
 		if (str[x] == 'N' || str[x] == 'S' || str[x] == 'W' || str[x] == 'E')

@@ -72,6 +72,8 @@ fclean: clean
 	@echo "$(NAME) has been removed"
 
 bonus: fclean $(B_OBJ_DIR) $(BONUS_OBJ)
+	@make -C $(MLX_DIR)
+	@make -C $(LIBFT_DIR)
 	@$(CC) -o $(NAME) $(BONUS_INCLUDES) $(BONUS_OBJ) $(LIBFT_FLAGS) $(MLX_FLAGS)
 
 run: re 
