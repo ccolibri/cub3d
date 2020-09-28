@@ -6,7 +6,7 @@
 /*   By: ccaptain <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/20 20:03:54 by ccaptain          #+#    #+#             */
-/*   Updated: 2020/09/28 19:00:01 by ccaptain         ###   ########.fr       */
+/*   Updated: 2020/09/28 19:08:36 by ccaptain         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,7 @@ static void		parse_line(char *str, int y, t_all *all)
 
 	x = 0;
 	if (!(ft_strchr(str, '1')))
-<<<<<<< HEAD
 		exit_cub("Error\nEmpty string after map", all);
-=======
-    		exit_cub("error", all);
->>>>>>> 13308873ab11d83654f4f18969b6a59c47051ed9
 	while (str[x] != '\0')
 	{
 		if (str[x] == 'N' || str[x] == 'S' || str[x] == 'W' || str[x] == 'E')
