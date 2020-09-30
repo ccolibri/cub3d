@@ -17,4 +17,4 @@ Also, this is my first raycaster with miniLibX.
 
 ```make runbonus``` **(to run bonus version with sound inside)**
 
-You can read the [en.subject.pdf](https://github.com/ccolibri/cub3d/blob/master/cub3d/en.subject.pdf) to see all instructions to create this project.
+You can read the [en.subject.pdf](https://github.com/ccolibri/cub3d/blob/master/en.subject.pdf) to see all instructions to create this project.
