@@ -78,7 +78,7 @@ static void		make_res(char *str, t_all *all)
 		str++;
 	while (*str)
 	{
-		if (ft_isspace(*str++))
+		if (ft_isspace(*str++) || ft_isalpha(*str++))
 			exit_cub("Error\nInvalid resolution string", all);
 	}
 	if (all->frame.w <= 0 || all->frame.h <= 0)

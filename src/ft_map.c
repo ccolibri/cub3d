@@ -19,9 +19,9 @@ static void		init_player(char wall, int x, int y, t_all *all)
 	all->plr.x = x + 0.5;
 	all->plr.y = y + 0.5;
 	if (wall == 'N')
-		all->plr.angle = M_PI / 2;
-	else if (wall == 'S')
 		all->plr.angle = 3 * M_PI / 2;
+	else if (wall == 'S')
+		all->plr.angle = M_PI / 2;
 	else if (wall == 'W')
 		all->plr.angle = M_PI;
 	else if (wall == 'E')

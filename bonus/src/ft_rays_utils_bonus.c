@@ -36,7 +36,7 @@ static t_ray_utils	vertical(t_all *all, t_ray *ray)
 	v.x = floor(all->plr.x / all->map.pix) * all->map.pix;
 	v.x += ray->is_right ? all->map.pix : 0;
 	v.y = all->plr.y + (v.x - all->plr.x) * tan(ray->angle);
-	if (v.y < 0 || all->map.pix * all->map.y)
+	if (v.y < 0 || v.y > all->map.pix * all->map.y)
 		return (v);
 	v.x_step = all->map.pix;
 	v.x_step *= ray->is_left ? -1 : 1;
@@ -65,7 +65,7 @@ static t_ray_utils	horisontal(t_all *all, t_ray *ray)
 	h.y = floor(all->plr.y / all->map.pix) * all->map.pix;
 	h.y += ray->is_down ? all->map.pix : 0;
 	h.x = all->plr.x + (h.y - all->plr.y) / tan(ray->angle);
-	if (h.y < 0 || all->map.pix * all->map.y)
+	if (h.y < 0 || h.y > all->map.pix * all->map.y)
 		return (h);
 	h.y_step = all->map.pix;
 	h.y_step *= ray->is_up ? -1 : 1;
